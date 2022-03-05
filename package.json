@@ -1,0 +1,29 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "gendiff",
+  "main": "bin/gendiff.js",
+  "type": "module",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnAErmak/frontend-project-lvl2.git"
+  },
+  "author": "Ermak Anna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnAErmak/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/AnnAErmak/frontend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^9.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
+  }
+}
