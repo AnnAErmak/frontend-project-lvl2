@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "gendiff",
-  "main": "bin/gendiff.js",
+  "main": "src/genDiff.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
@@ -24,6 +24,7 @@
     "commander": "^9.0.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.25.4",
+    "lodash": "^4.17.21"
   }
 }
