@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import _ from 'lodash';
 
-export default function (filepath1, filepath2) {
+export default function genDiff(filepath1, filepath2) {
   const pathFile1 = path.resolve(filepath1);
   const pathFile2 = path.resolve(filepath2);
   const rawDataFile1 = readFileSync(pathFile1, 'utf8');
@@ -18,7 +18,6 @@ export default function (filepath1, filepath2) {
   const sortArr = _.sortBy(unicArr);
   const resObj = {};
   for (const key of sortArr) {
-    console.log(dataFile1[key]);
     if (Object.hasOwn(dataFile1, key) && Object.hasOwn(dataFile2, key)) {
       if (dataFile1[key] !== dataFile2[key]) {
         resObj[` - ${key}`] = dataFile1[key];
@@ -34,5 +33,6 @@ export default function (filepath1, filepath2) {
       resObj[` + ${key}`] = dataFile2[key];
     }
   }
-  return resObj;
+  console.log(resObj);
+  return resObj
 }
