@@ -13,31 +13,34 @@ const stringify = (data, depth) => {
     return data;
   }
   const keys = Object.keys(data);
-  const result = keys.map((key) => `${getIndent(depth + 1)}  ${key}: ${stringify(data[key], depth + 1)}`);
+  const sortKeys = _.sortBy(keys);
+  const result = sortKeys.map((key) => `${getIndent(depth + 1)}  ${key}: ${stringify(data[key], depth + 1)}`);
   return `{\n${result.join('\n')}\n${' '.repeat((depth + 1) * indent)}}`;
 };
-function getNesting(tree, depth) {
-  const result = tree.map((node) => {
-    switch (node.type) {
-      case 'unchanged':
-        return `${getIndent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
-      case 'added':
-        return `${getIndent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
-      case 'removed':
-        return `${getIndent(depth)}- ${node.key}: ${stringify(node.value, depth)}`;
-      case 'changed': {
-        const oldValue = `${getIndent(depth)}- ${node.key}: ${stringify(node.oldValue, depth)}`;
-        const newValue = `${getIndent(depth)}+ ${node.key}: ${stringify(node.newValue, depth)}`;
-        return `${oldValue}\n${newValue}`;
-      }
-      case 'nested':
-        return `${getIndent(depth)}  ${node.key}: ${getNesting(node.children, depth + 1)}`;
-      default:
-        throw new Error(`${node.type} this format cannot be processed`);
-    }
-  });
-  return `{\n${result.join('\n')}\n${' '.repeat(depth * indent)}}`;
-}
+
 export default function renderStylish(tree) {
+  function getNesting(data, depth) {
+    console.log(data);
+    const result = data.map((node) => {
+      switch (node.type) {
+        case 'unchanged':
+          return `${getIndent(depth)}  ${node.key}: ${stringify(node.value, depth)}`;
+        case 'added':
+          return `${getIndent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
+        case 'removed':
+          return `${getIndent(depth)}- ${node.key}: ${stringify(node.value, depth)}`;
+        case 'changed': {
+          const oldValue = `${getIndent(depth)}- ${node.key}: ${stringify(node.oldValue, depth)}`;
+          const newValue = `${getIndent(depth)}+ ${node.key}: ${stringify(node.newValue, depth)}`;
+          return `${oldValue}\n${newValue}`;
+        }
+        case 'nested':
+          return `${getIndent(depth)}  ${node.key}: ${getNesting(node.children, depth + 1)}`;
+        default:
+          throw new Error(`${node.type} this format cannot be processed`);
+      }
+    });
+    return `{\n${result.join('\n')}\n${' '.repeat(depth * indent)}}`;
+  }
   return getNesting(tree, 0);
 }

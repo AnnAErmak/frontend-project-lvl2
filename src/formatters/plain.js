@@ -25,8 +25,6 @@ export default function renderPlain(tree) {
           return `Property '${property}' was updated. From ${stringify(obj.oldValue)} to ${stringify(obj.newValue)}`;
         case 'nested':
           return getNesting(obj.children, property);
-        // case 'unchanged':
-        //   return null;
         default:
           throw new Error(`${obj.type} is not defined`);
       }

@@ -28,7 +28,7 @@ test('differences tree plain', () => {
 test('differences tree stylish', () => {
   const file1Path = getFixturePath('fileTree1.yml');
   const file2Path = getFixturePath('fileTree2.yml');
-  const comparison = getData(file1Path, file2Path, 'stylish');
+  const comparison = getData(file1Path, file2Path);
   expect(comparison).toBe(stylish);
 });
 //
