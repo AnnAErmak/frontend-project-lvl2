@@ -3,7 +3,6 @@ import getResultCompare from './compare.js';
 
 export default function genDiff(obj1, obj2, formatName) {
   const tree = getResultCompare(obj1, obj2);
-  const result = format(tree, formatName);
-
-  return result;
+  return format(tree, formatName);
+  // return result;
 }
