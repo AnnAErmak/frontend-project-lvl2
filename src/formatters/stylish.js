@@ -23,7 +23,6 @@ const stringify = (data, depth) => {
 
 export default function renderStylish(tree) {
   function getNesting(data, depth) {
-    console.log(data);
     const result = data.map((node) => {
       switch (node.type) {
         case 'unchanged':
