@@ -10,6 +10,7 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixstures__',
 const readFixture = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 const plain = readFixture('plain.txt');
+const stylish = readFixture('stylish.txt');
 const json = readFixture('json.txt');
 
 test('differences tree json', () => {
@@ -23,4 +24,10 @@ test('differences tree plain', () => {
   const file2Path = getFixturePath('fileTree2.yml');
   const comparison = getData(file1Path, file2Path, 'plain');
   expect(comparison).toBe(plain);
+});
+test('differences tree stylish', () => {
+  const file1Path = getFixturePath('fileTree1.yml');
+  const file2Path = getFixturePath('fileTree2.yml');
+  const comparison = getData(file1Path, file2Path);
+  expect(comparison).toBe(stylish);
 });
