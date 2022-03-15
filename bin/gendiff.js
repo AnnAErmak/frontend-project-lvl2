@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
-import getData from '../src/main.js';
+import genDiffBetweenFiles from '../src/main.js';
 
 program
   .version('1.0.0')
@@ -11,7 +11,7 @@ program
   .argument('<filepath1>', 'path to file1')
   .argument('<filepath2>', 'path to file2')
   .action((filepath1, filepath2) => {
-    console.log(getData(filepath1, filepath2, program.opts().format));
+    console.log(genDiffBetweenFiles(filepath1, filepath2, program.opts().format));
   });
 
 program.parse();

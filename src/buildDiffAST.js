@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function getResultCompare(obj1, obj2) {
+export default function buildDiffAST(obj1, obj2) {
   const keys = _.union(Object.keys(obj1), Object.keys(obj2));
   const sortKeys = _.sortBy(keys);
   return sortKeys.map((key) => {
@@ -11,7 +11,7 @@ export default function getResultCompare(obj1, obj2) {
       return { key, value: obj1[key], type: 'removed' };
     }
     if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
-      return { key, children: getResultCompare(obj1[key], obj2[key]), type: 'nested' };
+      return { key, children: buildDiffAST(obj1[key], obj2[key]), type: 'nested' };
     }
     if (!_.isEqual(obj1[key], obj2[key])) {
       return {

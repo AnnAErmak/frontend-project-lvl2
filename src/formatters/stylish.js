@@ -12,9 +12,7 @@ const stringify = (data, depth) => {
   if (!_.isObject(data)) {
     return data;
   }
-  if (data === ' ') {
-    return ' ';
-  }
+
   const keys = Object.keys(data);
   const sortKeys = _.sortBy(keys);
   const result = sortKeys.map((key) => `${getIndent(depth + 1)}  ${key}: ${stringify(data[key], depth + 1)}`);
